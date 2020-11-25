@@ -2,21 +2,21 @@
 #include<signal.h>
 #include<unistd.h>
 #include<stdlib.h>
-
+// user-defined signal handler for time-intrrupt.
 void alarm_handler(int signo){
   if(signo == SIGALRM){
     printf ("Alarm\n");
   }
 }
 
-// user-defined signal handler for hardware-intrrupt.
+// user-defined signal handler for hardware-intrrupt by CTRL+C
 void intrrupt_handler(int signo){
   if(signo == SIGINT){
     printf ("CTRL+C pressed!\n");
   }
 }
 
-// user-defined signal handler for hardware-intrrupt.
+// user-defined signal handler for hardware-intrrupt by CTRL+Z
 void stop_handler(int signo){
   if(signo == SIGTSTP){
     printf ("CTRL+Z pressed!\n");
@@ -40,7 +40,7 @@ int main (void){
   }
   
   while(1){
-    alarm(2) ; 
-    sleep(20); 
+    alarm(2) ; //generate SIGALRM 
+    sleep(20); //always greater than alarm or the program will enter infinite loop!
   }
 }
